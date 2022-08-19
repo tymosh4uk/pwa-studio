@@ -17,6 +17,16 @@
  * or modify functionality from its dependencies.
  */
 
-function localIntercept() {}
+function localIntercept(targets) {
+        targets.of("@magento/venia-ui").routes.tap((routes) => {
+            routes.push({
+                name: "MyGreetingRoute",
+                pattern: "/greeting/:who?",
+                path: require.resolve("./src/components/GreetingPage/greetingPage.js"),
+            });
+            return routes;
+        });
+
+}
 
 module.exports = localIntercept;
