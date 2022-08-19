@@ -12,7 +12,7 @@ import Routes from '@magento/venia-ui/lib/components/Routes';
 import ToastContainer from '@magento/venia-ui/lib/components/ToastContainer';
 import Icon from '@magento/venia-ui/lib/components/Icon';
 
-import globalCSS from './index.module.css';
+import globalCSS from '../../index.module.css';
 import Main from '../Main';
 
 
