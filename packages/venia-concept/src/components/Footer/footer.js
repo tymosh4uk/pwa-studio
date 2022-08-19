@@ -12,6 +12,8 @@ import { useStyle } from '@magento/venia-ui/lib/classify';
 import resourceUrl from '@magento/peregrine/lib/util/makeUrl';
 
 import defaultClasses from './footer.module.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faBehance, faFacebookF, faGoogle, faSkype, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = props => {
     const { links } = props;
@@ -87,15 +89,20 @@ const Footer = props => {
                         />
                     </p>
                     <ul className={classes.socialLinks}>
-                        <li>
-                            <Instagram size={20} />
-                        </li>
-                        <li>
-                            <Facebook size={20} />
-                        </li>
-                        <li>
-                            <Twitter size={20} />
-                        </li>
+                        <FontAwesomeIcon height={16} icon={faBehance} width={15} />
+                        <FontAwesomeIcon height={16} icon={faFacebookF} width={15} />
+                        <FontAwesomeIcon height={16} icon={faGoogle} width={15} />
+                        <FontAwesomeIcon height={16} icon={faSkype} width={15} />
+                        <FontAwesomeIcon height={16} icon={faTwitter} width={15} />
+                        {/*<li>*/}
+                        {/*    <Instagram size={20} />*/}
+                        {/*</li>*/}
+                        {/*<li>*/}
+                        {/*    <Facebook size={20} />*/}
+                        {/*</li>*/}
+                        {/*<li>*/}
+                        {/*    <Twitter size={20} />*/}
+                        {/*</li>*/}
                     </ul>
                 </div>
                 <Newsletter />
