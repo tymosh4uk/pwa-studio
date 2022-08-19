@@ -58,6 +58,12 @@ const Footer = props => {
     return (
         <footer data-cy="Footer-root" className={classes.root}>
             <div className={classes.links}>
+                <div className={classes.link}>
+                    <Link to="/greeting">
+                        <span className={classes.label}>Greeting Page</span>
+                    </Link>
+                </div>
+
                 {linkGroups}
                 <div className={classes.callout}>
                     <span
