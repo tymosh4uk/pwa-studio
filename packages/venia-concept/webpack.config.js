@@ -128,6 +128,21 @@ module.exports = async env => {
         new HTMLWebpackPlugin(htmlWebpackConfig)
     ];
 
+    config.module.rules.push({
+        test: /\.s[ca]ss$/,
+            use: [
+                'style-loader', {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                        sourceMap: true,
+                        localIdentName: '[name]-[local]-[hash:base64:3]'
+                   }
+               },
+               'sass-loader'
+           ]
+       });
+
     /*
     Commenting out this section until SSR is fully implemented
     */

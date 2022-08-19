@@ -115,7 +115,9 @@ const Footer = props => {
                 >
                     <Logo classes={{ logo: classes.logo }} />
                 </Link>
+
             </div>
+
         </footer>
     );
 };
