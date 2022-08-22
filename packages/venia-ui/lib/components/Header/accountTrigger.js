@@ -47,7 +47,7 @@ const AccountTrigger = props => {
                     <AccountChip
                         fallbackText={formatMessage({
                             id: 'accountTrigger.buttonFallback',
-                            defaultMessage: 'Sign In'
+                            defaultMessage: 'Log In'
                         })}
                         shouldIndicateLoading={true}
                     />
