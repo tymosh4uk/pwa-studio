@@ -89,11 +89,21 @@ const Footer = props => {
                         />
                     </p>
                     <ul className={classes.socialLinks}>
-                        <FontAwesomeIcon height={16} icon={faBehance} width={15} />
-                        <FontAwesomeIcon height={16} icon={faFacebookF} width={15} />
-                        <FontAwesomeIcon height={16} icon={faGoogle} width={15} />
-                        <FontAwesomeIcon height={16} icon={faSkype} width={15} />
-                        <FontAwesomeIcon height={16} icon={faTwitter} width={15} />
+                        <li>
+                            <FontAwesomeIcon height={16} icon={faBehance} width={15} />
+                        </li>
+                        <li>
+                            <FontAwesomeIcon height={16} icon={faFacebookF} width={15} />
+                        </li>
+                        <li>
+                            <FontAwesomeIcon height={16} icon={faGoogle} width={15} />
+                        </li>
+                        <li>
+                            <FontAwesomeIcon height={16} icon={faSkype} width={15} />
+                        </li>
+                        <li>
+                            <FontAwesomeIcon height={16} icon={faTwitter} width={15} />
+                        </li>
                         {/*<li>*/}
                         {/*    <Instagram size={20} />*/}
                         {/*</li>*/}

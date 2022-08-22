@@ -143,3 +143,14 @@
     font-family: var(--global-fontFamily-serif);
     color: var(--custom-link-color);
 }
+
+.socialLinks li svg {
+    cursor: pointer;
+    transition: .3s all ease;
+}
+
+.socialLinks li svg:hover {
+    fill: #000000;
+    color: #000000;
+}
+
