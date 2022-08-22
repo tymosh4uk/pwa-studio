@@ -1,0 +1,16 @@
+div .swiper-horizontal .swiper-pagination {
+    bottom: 65px;
+}
+
+div .swiper-horizontal .swiper-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: unset;
+    border: 2px solid #222;
+    background: transparent;
+    opacity: 1;
+}
+
+div .swiper-horizontal .swiper-pagination .swiper-pagination-bullet-active {
+    background: #222;
+}

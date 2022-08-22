@@ -108,8 +108,7 @@ const contentTypesConfig = {
     },
     slider: {
         configAggregator: sliderConfigAggregator,
-        component: React.lazy(() => import('./ContentTypes/Slider')),
-        componentShimmer: SliderShimmer
+        component: React.lazy(() => import('@magento/venia-concept/src/components/Slider'))
     },
     // Slide is just a banner wrapped inside a slider
     slide: {
