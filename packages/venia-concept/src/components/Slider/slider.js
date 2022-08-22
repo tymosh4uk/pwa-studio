@@ -10,11 +10,12 @@ import {
 } from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import SwiperCore, { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
-import './slider.css'
 import 'swiper/swiper-bundle.css';
-import defaultClasses from './slider.module.css';
 import { useStyle } from '@magento/venia-ui/lib/classify';
 import { useMediaQuery } from '@magento/peregrine/lib/hooks/useMediaQuery';
+
+import './slider.css';
+import defaultClasses from './slider.module.css';
 
 SwiperCore.use([ Autoplay, Keyboard, Mousewheel, Navigation, Pagination ]);
 
