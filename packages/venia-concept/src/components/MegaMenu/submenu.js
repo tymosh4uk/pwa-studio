@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import { useSubMenu } from '@magento/peregrine/lib/talons/MegaMenu/useSubMenu';
 import { useStyle } from '@magento/venia-ui/lib/classify';
-import defaultClasses from '@magento/venia-ui/lib/components/MegaMenu/submenu.module.css';
 import SubmenuColumn from '@magento/venia-ui/lib/components/MegaMenu/submenuColumn';
 
-import './submenu.css';
+import defaultClasses from './submenu.module.css';
 
 /**
  * The Submenu component displays submenu in mega menu
