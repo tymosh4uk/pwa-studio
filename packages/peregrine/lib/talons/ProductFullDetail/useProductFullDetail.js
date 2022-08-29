@@ -8,6 +8,7 @@ import { appendOptionsToPayload } from '@magento/peregrine/lib/util/appendOption
 import { findMatchingVariant } from '@magento/peregrine/lib/util/findMatchingProductVariant';
 import { isProductConfigurable } from '@magento/peregrine/lib/util/isProductConfigurable';
 import { isSupportedProductType as isSupported } from '@magento/peregrine/lib/util/isSupportedProductType';
+import { useToasts } from '@magento/peregrine';
 import { deriveErrorMessage } from '../../util/deriveErrorMessage';
 import mergeOperations from '../../util/shallowMerge';
 import defaultOperations from './productFullDetail.gql';
@@ -230,6 +231,8 @@ export const useProductFullDetail = props => {
         product
     } = props;
 
+    const [, { addToast }] = useToasts();
+
     const [, { dispatch }] = useEventingContext();
 
     const hasDeprecatedOperationProp = !!(
@@ -429,6 +432,13 @@ export const useProductFullDetail = props => {
 
                 try {
                     await addProductToCart({ variables });
+
+                    addToast({
+                        message: formatMessage({ defaultMessage: 'You added product to your shopping cart', id: 'productFullDetail.success'}, { name: product.name }),
+                        onDismiss: remove => remove(),
+                        timeout: 5000,
+                        type: 'success'
+                    });
 
                     const selectedOptionsLabels =
                         selectedOptionsArray?.map((uid, i) => ({
