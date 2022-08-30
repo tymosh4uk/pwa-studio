@@ -24,6 +24,12 @@ function localIntercept(targets) {
                 pattern: "/greeting/:who?",
                 path: require.resolve("./src/components/GreetingPage/greetingPage.js"),
             });
+            routes.push({
+                exact: true,
+                name: 'Comments Page',
+                path: require.resolve('./src/components/CommentsPage'),
+                pattern: '/comments'
+            });
             return routes;
         });
 
