@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Info } from 'react-feather';
 import { string, number, shape } from 'prop-types';
@@ -12,10 +12,14 @@ import Image from '@magento/venia-ui/lib/components/Image';
 import GalleryItemShimmer from '@magento/venia-ui/lib/components/Gallery/item.shimmer';
 import WishlistGalleryButton from '@magento/venia-ui/lib/components/Wishlist/AddToListButton';
 import AddToCartbutton from '@magento/venia-ui/lib/components/Gallery/addToCartButton';
+import Rating from '@magento/venia-ui/lib/components/Rating';
+import Button from "@magento/venia-ui/lib/components/Button";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEye} from "@fortawesome/free-solid-svg-icons";
 
 import defaultClasses from './item.module.css';
-// eslint-disable-next-line no-unused-vars
-import Rating from '@magento/venia-ui/lib/components/Rating';
+import QuickView from "../QuickView";
+import {disableBodyScroll, enableBodyScroll} from "body-scroll-lock";
 
 // The placeholder image is 4:5, so we should make sure to size our product
 // images appropriately.
@@ -81,6 +85,27 @@ const GalleryItem = props => {
     //     <Rating rating={rating_summary} />
     // ) : null;
 
+    const rootElement = document.getElementById('root');
+
+    const dialogs = {
+        none: 1,
+        quick: 2
+    };
+
+    const [dialog, setDialog] = useState(dialogs.none);
+
+    const handleOpen = useCallback(caller => {
+        setDialog(dialogs[caller]);
+        disableBodyScroll(rootElement);
+    }, [setDialog]);
+
+    const handleClose = useCallback(() => {
+        setDialog(dialogs.none);
+        enableBodyScroll(rootElement);
+    }, [setDialog]);
+
+    const isOpenQuick = dialog === dialogs.quick;
+
     return (
         <div
             data-cy="GalleryItem-root"
@@ -108,6 +133,17 @@ const GalleryItem = props => {
                 />
                 {ratingAverage}
             </Link>
+
+            <div className={classes.actions}>
+                <button onClick={() => handleOpen('quick')}>
+                    <FontAwesomeIcon height={43} icon={faEye} width={60} />
+                </button>
+            </div>
+
+            { isOpenQuick &&
+                <QuickView isOpen={isOpenQuick} onCancel={handleClose} product={item} />
+            }
+
             <Link
                 onClick={handleLinkClick}
                 to={productLink}
@@ -116,6 +152,7 @@ const GalleryItem = props => {
             >
                 <span>{name}</span>
             </Link>
+
             { item.product_brand
                 ?
                 <div data-cy="GalleryItem-price" className={classes.price}>

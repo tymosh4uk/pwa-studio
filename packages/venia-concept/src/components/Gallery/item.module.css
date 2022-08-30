@@ -2,6 +2,7 @@
     composes: content-start from global;
     composes: grid from global;
     composes: gap-y-2xs from global;
+    position: relative;
 }
 
 .images {
@@ -74,4 +75,37 @@
     composes: text-sm from global;
     composes: text-subtle from global;
     composes: w-full from global;
+}
+
+.actions {
+    margin: auto;
+    list-style: none;
+    text-align: center;
+    z-index: 11;
+    visibility: hidden;
+    transition: all .3s ease-in;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: rgba(255,255,255,.9);
+    padding: 15px 0;
+}
+
+.root:hover > .actions {
+    visibility: visible;
+    transform: translateX(-50%) translateY(-50%);
+    top: 40%;
+}
+
+.eye {
+    display: block;
+    line-height: 43px;
+    height: 43px;
+    width: 60px;
+    font-size: 16px;
+    border-radius: 0;
+    margin: 0 auto;
+    color: #222;
+    text-align: center;
 }
