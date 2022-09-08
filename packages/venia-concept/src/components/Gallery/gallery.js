@@ -31,6 +31,7 @@ const Gallery = props => {
                         key={item.id}
                         item={item}
                         storeConfig={storeConfig}
+                        classes={classes}
                     />
                 );
             }),

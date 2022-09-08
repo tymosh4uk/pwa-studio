@@ -1,4 +1,5 @@
-import React, { Fragment, Suspense, useMemo, useRef } from 'react';
+import React, {Fragment, Suspense, useEffect, useMemo, useRef, useState} from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { array, number, shape, string } from 'prop-types';
 
@@ -20,6 +21,8 @@ import SortedByContainer, {
     SortedByContainerShimmer
 } from '@magento/venia-ui/lib/components/SortedByContainer';
 import NoProductsFound from '@magento/venia-ui/lib/RootComponents/Category/NoProductsFound';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList, faTh } from "@fortawesome/free-solid-svg-icons";
 
 import Gallery from "../Gallery";
 import defaultClasses from './category.module.css';
@@ -57,6 +60,14 @@ const CategoryContent = props => {
     } = talonProps;
 
     const sidebarRef = useRef(null);
+    const sectionRef = useRef(null);
+
+    const location = useLocation();
+    const { pathname, search } = location;
+    const urlParams = new URLSearchParams(search);
+    const history = useHistory();
+    const [view, setView] = useState(urlParams.get('view') ? urlParams.get('view') : 'grid');
+
     const classes = useStyle(defaultClasses, props.classes);
     const shouldRenderSidebarContent = useIsInViewport({
         elementRef: sidebarRef
@@ -117,13 +128,41 @@ const CategoryContent = props => {
         <RichContent html={categoryDescription} />
     ) : null;
 
+    const handleView = view => {
+        view !== 'grid'
+        ?
+            sectionRef.current.classList.add(classes.listView)
+        :
+            sectionRef.current.classList.remove(classes.listView);
+    }
+
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(search);
+
+        if (!urlParams.get('view')) {
+            urlParams.append('view', view);
+            history.replace({
+                search: `?${urlParams.toString()}`,
+            })
+        } else {
+            urlParams.set('view', view);
+            history.replace({
+                search: urlParams.toString(),
+            })
+        }
+
+        handleView(view);
+    }, [view]);
+
+
     const content = useMemo(() => {
         if (!totalPagesFromData && !isLoading) {
             return <NoProductsFound categoryId={categoryId} />;
         }
 
         const gallery = totalPagesFromData ? (
-            <Gallery items={items} />
+            <Gallery items={items} classes={classes} />
         ) : (
             <GalleryShimmer items={items} />
         );
@@ -134,7 +173,7 @@ const CategoryContent = props => {
 
         return (
             <Fragment>
-                <section className={classes.gallery}>{gallery}</section>
+                <section ref={sectionRef} className={classes.gallery}>{gallery}</section>
                 <div className={classes.pagination}>{pagination}</div>
             </Fragment>
         );
@@ -166,6 +205,24 @@ const CategoryContent = props => {
                     </h1>
                     {categoryDescriptionElement}
                 </div>
+
+                <div className={classes.btnContainer}>
+                    <button
+                        className={classes.btnMode}
+                        disabled={view === 'grid' && 'disabled'}
+                        onClick={() => setView('grid')}
+                    >
+                        <FontAwesomeIcon height={16} icon={faTh} width={15} />
+                    </button>
+                    <button
+                        className={classes.btnMode}
+                        disabled={view === 'list' && 'disabled'}
+                        onClick={() => setView('list')}
+                    >
+                        <FontAwesomeIcon height={16} icon={faList} width={15} />
+                    </button>
+                </div>
+
                 <div className={classes.contentWrapper}>
                     <div ref={sidebarRef} className={classes.sidebar}>
                         <Suspense fallback={<FilterSidebarShimmer />}>

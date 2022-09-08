@@ -80,3 +80,58 @@
     composes: lg_pt-16 from global;
     composes: lg_w-filterSidebarWidth from global;
 }
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnMode {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    margin-left: 5px;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    color: #222;
+    transition: .3s ease all;
+}
+
+.btnMode:hover {
+    background-color: #eeeeee;
+}
+
+.btnMode svg {
+    color: #000000;
+}
+
+.btnMode:disabled {
+    background-color: #000;
+}
+
+.btnMode:disabled svg {
+    color: #ffffff;
+}
+
+.items {
+    composes: gap-xs from global;
+    composes: grid from global;
+    composes: mb-3 from global;
+    grid-area: items;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+.listView .items{
+    display: flex;
+    flex-direction: column;
+}
+
+.listView .galleryItem {
+    width: 30%;
+    margin: 0 auto 0 5%;
+}

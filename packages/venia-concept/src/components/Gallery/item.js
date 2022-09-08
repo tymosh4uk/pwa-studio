@@ -109,7 +109,7 @@ const GalleryItem = props => {
     return (
         <div
             data-cy="GalleryItem-root"
-            className={classes.root}
+            className={classes.galleryItem}
             aria-live="polite"
             aria-busy="false"
             ref={itemRef}
